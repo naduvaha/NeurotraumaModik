@@ -70,8 +70,9 @@
 | `nt_diag [игрок]` | диагностика цели/netid |
 | `nt_limbs [игрок]` | список частей тела с индексами |
 
-- **Цель**: явный `[игрок]` (частичное имя в MP или `@a`) → открытое окно ран на союзнике → локальный игрок.
-- **Выбор конечности** токеном `#`: `#sel` (выделенная в UNI-HEALTH), `#<индекс>`, либо алиасы `#head #chest #abdomen #larm #rarm #lleg #rleg`, либо фрагмент имени. Работает для аффликций, привязанных к конечности (`necrosis`, `tetanus`, `frostbite`).
+- **Цель**: явный `[игрок]` (частичное имя в MP или `@a`) → открытое окно ран на союзнике → локальный игрок. Ник с пробелами пишется как есть: `nt_add frostbite 20 name name #lhand`.
+- **Читы**: в мультиплеере все `nt_*` требуют включённый **`sv_cheats`** в правилах лобби (как `give` / `godmode`). Без него даже хост получит отказ.
+- **Выбор конечности** токеном `#`: `#sel` (выделенная в UNI-HEALTH), `#<индекс>`, алиасы `#head #chest #lower #lhand #rhand #lfoot #rfoot #lthigh #rthigh ...`, либо фрагмент имени. Работает для аффликций, привязанных к конечности (`necrosis`, `tetanus`, `frostbite`). Без `#` конечность выбирается автоматически (для некроза — не голова). Иконка некроза **не показывается на голове**.
 - В командной строке для `id` и для `#конечность` работает **автозаполнение** (начните печатать `#`, чтобы увидеть список конечностей).
 
 ## Зависимости
@@ -183,8 +184,9 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | `nt_diag [player]` | target/netid diagnostics |
 | `nt_limbs [player]` | list body parts with indices |
 
-- **Target**: explicit `[player]` (MP partial name or `@a`) → open wound view on an ally → local player.
-- **Limb selection** via a `#` token: `#sel` (highlighted in UNI-HEALTH), `#<index>`, aliases `#head #chest #abdomen #larm #rarm #lleg #rleg`, or a name fragment. Applies to limb-scoped afflictions (`necrosis`, `tetanus`, `frostbite`).
+- **Target**: explicit `[player]` (MP partial name or `@a`) → open wound view on an ally → local player. Names with spaces work as-is: `nt_add frostbite 20 name name #lhand`.
+- **Cheats**: in multiplayer all `nt_*` commands require **`sv_cheats`** enabled in lobby rules (same as `give` / `godmode`). The host is blocked too when it is off.
+- **Limb selection** via a `#` token: `#sel` (highlighted in UNI-HEALTH), `#<index>`, aliases `#head #chest #lower #lhand #rhand #lfoot #rfoot #lthigh #rthigh ...`, or a name fragment. Applies to limb-scoped afflictions (`necrosis`, `tetanus`, `frostbite`). Without `#`, a limb is picked automatically (necrosis never uses the head). The necrosis icon **does not appear on the head**.
 - The command line offers **autocompletion** for both `id` and `#limb` (start typing `#` to see the limb list).
 
 ## Requirements
