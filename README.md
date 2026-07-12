@@ -5,7 +5,7 @@
 **Version / Версия:** `0.1.0`
 **Plugin / Плагин:** `NeurotraumaModikByStaili.dll`
 **Hard dependency / Жёсткая зависимость:** [KrokoshaCasualtiesMP (KrokMP)](https://cucorelib.web.app/) · [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341)
-**Optional / Опционально:** [QoL.Unknown](https://github.com/jimmyking9999999/QoL-Unknown/releases)
+**Optional / Опционально:** [QoL.Unknown](https://github.com/jimmyking9999999/QoL-Unknown/releases) · **Herobrine's Prosthetics** (протезы)
 
 ---
 
@@ -43,10 +43,11 @@
 
 - **Фантомные эффекты** при высоком психозе/галлюцинациях: призрачные пауки, фантомное кровотечение с красной виньеткой и жуткий шёпот на экране игрока. Чисто визуально и клиентски (отключается в настройках).
 - **Иконки мода в ванильной панели статусов** — активные осложнения показываются снизу рядом с ванильными, размер подогнан под ванильный (отключается).
-- **Своя хирургия** на предметы (скальпель / пила / ранорасширитель): дренаж, удаление шрапнели, удаление мёртвой ткани, ампутация, пересадка. GUI оформлен под ванильные элементы.
+- **Своя хирургия** на предметы (скальпель / пила / ранорасширитель): дренаж, удаление шрапнели, удаление мёртвой ткани, ампутация, пересадка органа (сердце / лёгкие / почки). Для пересадки нужен ванильный предмет `internalorgans` (качество ≥40%) — один предмет на одну операцию.
 - **Износ инструментов** — хирургические инструменты тратят состояние только при выполнении операции (не при открытии меню); расходники — при использовании.
 - **Мультиплеер**: авторитет на хосте, синхронизация состояния, лечение союзников через окно ран, операции с указанием конкретной конечности.
 - **Крафт**: рецепты завязаны на симптомы; сложные (критические) процедуры требуют дополнительных ингредиентов.
+- **Совместимость с Herobrine's Prosthetics** (опционально): если у игрока установлен мод протезов, на конечности с `ProstheticLimb` не показываются necrosis/tetanus/frostbite/chronicpain, не предлагается ампутация через necrosis-picker, мод не бьёт `skinHealth` протеза обморожением. Body-wide аффликции (психоз, сердце, почки и т.д.) по-прежнему действуют на всё тело.
 
 ## Предметы
 
@@ -54,7 +55,7 @@
 |----|---------|-----------|
 | `nt_o2_mask` | Кислородная маска | восполняет O2 в крови, снимает гипервентиляцию |
 | `nt_scalpel` | Скальпель | открывает хирургию: удаление шрапнели, дебридмент некроза |
-| `nt_bonesaw` | Костная пила | ампутация, пересадка |
+| `nt_bonesaw` | Костная пила | ампутация, пересадка (нужны `internalorgans` ≥40%) |
 | `nt_retractor` | Ранорасширитель | плевральный дренаж, внутренние процедуры |
 | `nt_cpr_mask` | Маска СЛР | пассивно повышает эффективность СЛР |
 
@@ -82,6 +83,7 @@
 | **Обязательно** | [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341) — общая библиотека модов (регистрация предметов/контента, netcode) |
 | **Опционально** | [QoL.Unknown](https://github.com/jimmyking9999999/QoL-Unknown/releases) — вкладка настроек мода |
 | **Опционально** | [MultyModik](https://github.com/naduvaha/MultyModik/releases) — источник тиков настроения/обнимашек |
+| **Опционально** | **Herobrine's Prosthetics** (`prosthetics.dll`, GUID `com.HerobrinesProsthetics`) — протезы конечностей |
 
 > Все игроки в лобби (хост и клиенты) должны иметь одинаковую версию плагина, KrokMP и CUCoreLib.
 
@@ -107,6 +109,7 @@
 
 - Требует версию игры / KrokMP / CUCoreLib, под которые собрана сборка.
 - Возможны конфликты с модами, патчащими окно ран (`WoundView`), панель статусов (`MoodleManager`) или систему предметов.
+- **Herobrine's Prosthetics**: поддерживается опционально (runtime-детект `ProstheticLimb`). Протез не получает per-limb инфекцию/некроз/обморожение от нашего мода и не попадает под `nt_bonesaw` через necrosis-picker.
 
 ## Содержимое релиза
 
@@ -153,10 +156,11 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 
 - **Phantom effects** at high psychosis/hallucinations: phantom spiders, phantom bleeding with a red vignette, and creepy whispers on the player's screen. Purely cosmetic and client-side (toggleable).
 - **Mod icons in the vanilla status bar** — active complications appear at the bottom next to vanilla ones, sized to match (toggleable).
-- **Custom surgery** on tools (scalpel / bonesaw / retractor): drainage, shrapnel removal, dead-tissue removal, amputation, transplant. The GUI is styled after vanilla elements.
+- **Custom surgery** on tools (scalpel / bonesaw / retractor): drainage, shrapnel removal, dead-tissue removal, amputation, single-organ transplant (heart / lungs / kidneys). Each transplant consumes one vanilla `internalorgans` item (condition ≥40%).
 - **Tool wear** — surgical tools lose condition only when an operation is performed (not on opening the menu); consumables wear on use.
 - **Multiplayer**: host-authoritative, state sync, treating allies through the wound view, operations targeting a specific limb.
 - **Crafting**: recipes tied to symptoms; complex (critical) procedures need extra ingredients.
+- **Herobrine's Prosthetics support** (optional): when the prosthetics mod is installed, limbs with a `ProstheticLimb` component do not show necrosis/tetanus/frostbite/chronicpain icons, are excluded from the necrosis amputation picker, and are skipped by our frostbite skin-damage write. Body-wide afflictions (psychosis, heart, kidneys, etc.) still apply to the whole patient.
 
 ## Items
 
@@ -164,7 +168,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 |----|------|---------|
 | `nt_o2_mask` | O2 mask | restores blood O2, clears hyperventilation |
 | `nt_scalpel` | Scalpel | opens surgery: shrapnel removal, necrosis debridement |
-| `nt_bonesaw` | Bone saw | amputation, transplant |
+| `nt_bonesaw` | Bone saw | amputation, transplant (requires `internalorgans` ≥40%) |
 | `nt_retractor` | Retractor | pleural drainage, internal procedures |
 | `nt_cpr_mask` | CPR mask | passively boosts CPR effectiveness |
 
@@ -192,6 +196,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | **Required** | [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341) — shared modding library (item/content registration, netcode) |
 | **Optional** | [QoL.Unknown](https://github.com/jimmyking9999999/QoL-Unknown/releases) — mod settings tab |
 | **Optional** | [MultyModik](https://github.com/naduvaha/MultyModik/releases) — hug/mood tick source |
+| **Optional** | **Herobrine's Prosthetics** (`prosthetics.dll`, GUID `com.HerobrinesProsthetics`) — limb prosthetics |
 
 > Every player in the lobby (host and clients) must run the same plugin, KrokMP and CUCoreLib version.
 
@@ -217,6 +222,7 @@ Key options: `ShowModMoodles` (icons in the vanilla bar), `HallucinationVisuals`
 
 - Tied to the game / KrokMP / CUCoreLib version this build targets. After a major game update the plugin needs a rebuild.
 - May conflict with mods that patch the wound view (`WoundView`), the status bar (`MoodleManager`) or the item system.
+- **Herobrine's Prosthetics**: optional integration (runtime `ProstheticLimb` detection). Prosthetic limbs are exempt from our per-limb infection/necrosis/frostbite effects and from necrosis-picker amputation via `nt_bonesaw`.
 
 ## Release contents
 
