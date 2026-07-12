@@ -43,7 +43,7 @@
 
 - **Фантомные эффекты** при высоком психозе/галлюцинациях: призрачные пауки, фантомное кровотечение с красной виньеткой и жуткий шёпот на экране игрока. Чисто визуально и клиентски (отключается в настройках).
 - **Иконки мода в ванильной панели статусов** — активные осложнения показываются снизу рядом с ванильными, размер подогнан под ванильный (отключается).
-- **Своя хирургия** на предметы (скальпель / пила / ранорасширитель): дренаж, удаление шрапнели, удаление мёртвой ткани, ампутация, пересадка органа (сердце / лёгкие / почки). Для пересадки нужен ванильный предмет `internalorgans` (качество ≥40%) — один предмет на одну операцию.
+- **Своя хирургия** на предметы (скальпель / пила / ранорасширитель): дренаж, удаление мёртвой ткани, ампутация, пересадка органа (сердце / лёгкие / почки). Для пересадки нужен ванильный предмет `internalorgans` (качество ≥40%) — один предмет на одну операцию.
 - **Износ инструментов** — хирургические инструменты тратят состояние только при выполнении операции (не при открытии меню); расходники — при использовании.
 - **Мультиплеер**: авторитет на хосте, синхронизация состояния, лечение союзников через окно ран, операции с указанием конкретной конечности.
 - **Крафт**: рецепты завязаны на симптомы; сложные (критические) процедуры требуют дополнительных ингредиентов.
@@ -54,7 +54,7 @@
 | ID | Предмет | Назначение |
 |----|---------|-----------|
 | `nt_o2_mask` | Кислородная маска | восполняет O2 в крови, снимает гипервентиляцию |
-| `nt_scalpel` | Скальпель | открывает хирургию: удаление шрапнели, дебридмент некроза |
+| `nt_scalpel` | Скальпель | открывает хирургию: дебридмент некроза |
 | `nt_bonesaw` | Костная пила | ампутация, пересадка (нужны `internalorgans` ≥40%) |
 | `nt_retractor` | Ранорасширитель | плевральный дренаж, внутренние процедуры |
 | `nt_cpr_mask` | Маска СЛР | пассивно повышает эффективность СЛР |
@@ -156,7 +156,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 
 - **Phantom effects** at high psychosis/hallucinations: phantom spiders, phantom bleeding with a red vignette, and creepy whispers on the player's screen. Purely cosmetic and client-side (toggleable).
 - **Mod icons in the vanilla status bar** — active complications appear at the bottom next to vanilla ones, sized to match (toggleable).
-- **Custom surgery** on tools (scalpel / bonesaw / retractor): drainage, shrapnel removal, dead-tissue removal, amputation, single-organ transplant (heart / lungs / kidneys). Each transplant consumes one vanilla `internalorgans` item (condition ≥40%).
+- **Custom surgery** on tools (scalpel / bonesaw / retractor): drainage, dead-tissue removal, amputation, single-organ transplant (heart / lungs / kidneys). Each transplant consumes one vanilla `internalorgans` item (condition ≥40%).
 - **Tool wear** — surgical tools lose condition only when an operation is performed (not on opening the menu); consumables wear on use.
 - **Multiplayer**: host-authoritative, state sync, treating allies through the wound view, operations targeting a specific limb.
 - **Crafting**: recipes tied to symptoms; complex (critical) procedures need extra ingredients.
@@ -167,7 +167,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | ID | Item | Purpose |
 |----|------|---------|
 | `nt_o2_mask` | O2 mask | restores blood O2, clears hyperventilation |
-| `nt_scalpel` | Scalpel | opens surgery: shrapnel removal, necrosis debridement |
+| `nt_scalpel` | Scalpel | opens surgery: necrosis debridement |
 | `nt_bonesaw` | Bone saw | amputation, transplant (requires `internalorgans` ≥40%) |
 | `nt_retractor` | Retractor | pleural drainage, internal procedures |
 | `nt_cpr_mask` | CPR mask | passively boosts CPR effectiveness |
