@@ -19,8 +19,6 @@
 Адаптация мода медицинского реализма **Neurotrauma** (из Barotrauma) для игры **Casualties Unknown**.
 Добавляет новый слой аффликций (осложнений) поверх ванильной системы «муддлов», не переписывая её — всё навешивается через аддитивные Harmony-патчи, собственную UI-панель и окно настроек.
 
-Мод сознательно **не дублирует** то, что уже есть в ванили (переломы, вывихи, шрапнель, ожоги, кровопотеря, давление, гипоксия, сепсис, инфекция раны, боль, тахикардия, фибрилляция, остановка сердца, инсульт, сотрясение, ломка). Он закрывает только пробелы.
-
 ## Аффликции (осложнения)
 
 Каждое имеет иконку, локализованные описание/подсказки лечения и, где нужно, отображается в нижней ванильной панели статусов.
@@ -130,8 +128,6 @@
 
 A Casualties Unknown adaptation of Barotrauma's medical-realism mod **Neurotrauma**.
 It layers a new set of afflictions (complications) on top of the vanilla moodle system without rewriting it — everything is bolted on with additive Harmony patches, a dedicated UI panel and a settings window.
-
-The mod deliberately **does not duplicate** what vanilla already simulates (fractures, dislocations, shrapnel, burns, blood loss, blood pressure, hypoxia, sepsis, wound infection, pain, tachycardia, fibrillation, cardiac arrest, stroke, concussion, withdrawal). It only fills the gaps.
 
 ## Afflictions (complications)
 
