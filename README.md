@@ -2,7 +2,7 @@
 
 [Русский](#русский) | [English](#english)
 
-**Version / Версия:** `2.0.0`
+**Version / Версия:** `2.1.0`
 **Plugin / Плагин:** `NeurotraumaModikByStaili.dll`
 **Nexus / Нексус:** [nexusmods.com/scavprototype/mods/440](https://www.nexusmods.com/scavprototype/mods/440)
 **Hard dependency / Жёсткая зависимость:** [KrokoshaCasualtiesMP (KrokMP)](https://cucorelib.web.app/) · [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341)
@@ -43,24 +43,30 @@
 | `kidneyfailure` | Почечная недостаточность | запущенное повреждение почек | хирургия: пересадка почки |
 | `kidney_warning` | Тревога по почкам | `kidneyfailure` ≥ 40 | снизить радиацию/сепсис/обезвоживание |
 | `kidney_deadlow` | Почки — критично | `kidneyfailure` ≥ 80 | срочно: пила → пересадка почки |
+| `liverdamage` | Повреждение печени | алкоголь, передозировка, сепсис, радиация, токсины при отказе почек, антипаразитарное | бросить спирт; лечить причину |
+| `liverfailure` / `pechen_dead` | Отказ печени | `liverdamage` ≥ 70 | хирургия: пересадка печени + антипаразитарное (профилактика), без алкоголя |
+| `pechen_warning` | Тревога по печени | `liverdamage` 10–70 | бросить пить; сепсис / передозировка / радиация |
+| `platadead1/2/3stadia` | Сбой чипа (1–3) | радиация, травма, сепсис, передоз, экстрем. темп. (только чипированный режим) | крафт/применить `nt_important_chip` (плата ≥90% + нить×2) |
 | `chronicpain` | Хроническая боль | давние травмы | морфин (малая доза, осторожно с зависимостью) |
 | `psychosis` | Психоз | затяжные галлюцинации (>40) | время, сон, спирт |
 | `hallucinations` | Галлюцинации | радиация, травма, низкое настроение | время, сон, спирт |
 | `porez1` | Порез (степень 1) | разрез скальпелем; шанс от порезов/укусов | ванильные нити (`medicalsuture`) или само |
 | `porez3` | Порез (степень 3, широкий) | расширение раны ранорасширителем | зашить после операции |
 | `porez4_foreign` / `porez5_foreign` | Порез с инородным телом | попадание инородного тела (выше шанс при укусах) | извлечь ножницами, затем зашить |
+| `parazite` | Паразиты | ~6 мин необработанного `porez4/5_foreign` на конечности (1–5 шт., рандом) | извлечь руками или пинцетом (миниигра); `nt_antiparasite` **не** вытаскивает уже засевших |
 | `fresh_suture` | Свежий шов | после наложения нитей (ваниль) | место защищено от повреждений, заживает само (100 → 0, ~2 мин) |
 
 ## Особенности
 
 - **Фантомные эффекты** при высоком психозе/галлюцинациях: призрачные пауки, фантомное кровотечение с красной виньеткой и жуткий шёпот на экране игрока. При **психозе > 30** — слуховые галлюцинации в духе Баратравмы на ванильных звуках: выстрелы, «вьетнамка» с сонаром, случайные звуки боли и крики персонажа. Чисто клиентски, без реального урона (отключается в настройках).
 - **Иконки мода в ванильной панели статусов** — активные осложнения показываются снизу рядом с ванильными, размер подогнан под ванильный (отключается).
-- **Своя хирургия** на предметы (скальпель / пила / ранорасширитель / ножницы): дренаж, удаление мёртвой ткани, ампутация, пересадка органа (сердце / лёгкие / почки). Для пересадки нужен ванильный предмет `internalorgans` (качество ≥40%) — один предмет на одну операцию. **Операции не «в один клик»**: сначала разрез скальпелем (porez1) → расширение ранорасширителем (porez3) → и только затем внутренние процедуры; инородные тела извлекаются ножницами; закрытие — ванильными нитями (`medicalsuture`). Неверный инструмент не продвигает операцию, а лишь слегка вредит. Анестезия — через кислородный конденсатор с заряженной сывороткой.
+- **Своя хирургия** на предметы (скальпель / пила / ранорасширитель / ножницы): дренаж, удаление мёртвой ткани, ампутация, пересадка органа (сердце / лёгкие / почки / печень). Для пересадки нужен ванильный предмет `internalorgans` (качество ≥40%) — один предмет на одну операцию. После пересадки печени — окно риска инфекции (`liver_graft`): антипаразитарное ускоряет приживление; алкоголь бьёт по новому органу сильнее. **Операции не «в один клик»**: сначала разрез скальпелем (porez1) → расширение ранорасширителем (porez3) → и только затем внутренние процедуры; инородные тела извлекаются ножницами; закрытие — ванильными нитями (`medicalsuture`). Неверный инструмент не продвигает операцию, а лишь слегка вредит. Анестезия — через кислородный конденсатор с заряженной сывороткой.
 - **Износ инструментов** — хирургические инструменты тратят состояние только при выполнении операции (не при открытии меню); расходники — при использовании.
-- **Мультиплеер**: авторитет на хосте, синхронизация состояния (включая раны по конечностям и группу крови), лечение союзников через окно ран, операции с указанием конкретной конечности.
+- **Паразиты**: заселяются в необработанную рану с инородным телом на той же конечности (~6 мин). Мудл `parazite` на 100%, пока есть хотя бы один. Извлечение — миниигра (кнопка в окне ран / ванильный пинцет); в MP несколько игроков могут видеть чужие руки и тянуть вместе. Антипаразитарное даёт только **профилактику** (~6 мин, `antiparasite_guard`) против новых заселений. Отключается тогглом **Симптомы паразитов** (`EnableParasites`).
+- **Мультиплеер**: авторитет на хосте, синхронизация состояния (включая раны/паразитов по конечностям и группу крови), маска симптомов хоста (`FEATURES`), лечение союзников через окно ран, операции с указанием конкретной конечности, совместная миниигра извлечения паразитов.
 - **Группа крови (ABO+Rh)**: случайная при спавне в забеге; показывается в панели симптомов («У вас _ группа крови») и в описании ванильного пакета жёлтой крови. Сохраняется при переходе слоёв и в `save.sv` (Continue). **Несовместимое вливание** жёлтой крови → ~3 мин повышенное давление (~160) и пульс 120.
 - **Крафт**: инструменты и расходники в вкладке Medicine; типированные пакеты крови — `bloodbag` + 20 мл `alienblood` (не меняют вашу группу, нужны для переливания с меткой ABO).
-- **Сохранение аффликций**: статус мода пишется в блок `neurotrauma` внутри `save.sv` вместе с группой крови.
+- **Сохранение аффликций**: статус мода пишется в блок `neurotrauma` внутри `save.sv` вместе с группой крови, счётчиками паразитов по конечностям и возрастом инородных ран.
 - **Совместимость с Herobrine's Prosthetics** (опционально): если у игрока установлен мод протезов, на конечности с `ProstheticLimb` не показываются necrosis/tetanus/frostbite/chronicpain, не предлагается ампутация через necrosis-picker, мод не бьёт `skinHealth` протеза обморожением. Body-wide аффликции (психоз, сердце, почки и т.д.) по-прежнему действуют на всё тело.
 
 ## Предметы
@@ -71,7 +77,7 @@
 | `nt_bonesaw` | Костная пила | ампутация, пересадка (нужны `internalorgans` ≥40%) |
 | `nt_retractor` | Ранорасширитель | расширяет рану (porez3), плевральный дренаж, внутренние процедуры |
 | `nt_scissors` | Ножницы | извлечение инородных тел, извлечение сыворотки из конденсатора |
-| `nt_antiparasite` | Антипаразитарное | убирает паразитов/бактерий в крови |
+| `nt_antiparasite` | Антипаразитарное | профилактика новых паразитов (~6 мин); слегка помогает печени / сепсису — **не** извлекает уже засевших |
 | `nt_serum_sleep` | Сыворотка для сна | заряжается в конденсатор (как батарейка) для анестезии |
 | `nt_o2_condenser` | Кислородный конденсатор | пустой — кислородная маска (O2 + гипервентиляция); с сывороткой — усыпляет для операции |
 | `nt_bloodtype_op` … `nt_bloodtype_abm` | Пакет крови (O+/O−/A+/…/AB−) | типированная жёлтая кровь для вливания; крафт: `bloodbag` + 20 мл инопланетной крови |
@@ -90,7 +96,8 @@
 
 - **Цель**: явный `[игрок]` (частичное имя в MP или `@a`) → открытое окно ран на союзнике → локальный игрок. Ник с пробелами пишется как есть: `nt_add frostbite 20 name name #lhand`.
 - **Читы**: в мультиплеере все `nt_*` требуют включённый **`sv_cheats`** в правилах лобби (как `give` / `godmode`). Без него даже хост получит отказ.
-- **Выбор конечности** токеном `#`: `#sel` (выделенная в UNI-HEALTH), `#<индекс>`, алиасы `#head #chest #lower #lhand #rhand #lfoot #rfoot #lthigh #rthigh ...`, либо фрагмент имени. Работает для аффликций, привязанных к конечности (`necrosis`, `tetanus`, `frostbite`). Без `#` конечность выбирается автоматически (для некроза — не голова). Иконка некроза **не показывается на голове**.
+- **Выбор конечности** токеном `#`: `#sel` (выделенная в UNI-HEALTH), `#<индекс>`, алиасы `#head #chest #lower #lhand #rhand #lfoot #rfoot #lthigh #rthigh ...`, либо фрагмент имени. Работает для аффликций, привязанных к конечности (`necrosis`, `tetanus`, `frostbite`, `parazite`). Без `#` конечность выбирается автоматически (для некроза — не голова). Иконка некроза **не показывается на голове**.
+- **`parazite`**: `nt_set parazite 100 #larm` — случайно 1–5 шт. на конечности; `nt_set parazite 3 #larm` — ровно 3. Мудл всегда 100%, пока счётчик > 0.
 - В командной строке для `id` и для `#конечность` работает **автозаполнение** (начните печатать `#`, чтобы увидеть список конечностей).
 
 ## Зависимости
@@ -116,13 +123,14 @@
    (`NeurotraumaModikByStaili.dll` и папку `NeurotraumaModik\Content` с иконками/звуками)
 3. Запустите игру. В `BepInEx\LogOutput.log` появится строка:
    ```
-   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.0.0 loaded. ...
+   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.1.0 loaded. ...
    ```
 
 ## Настройки
 
 `Настройки → Mods` (при QoL.Unknown) или горячая клавиша **F9**. Файл: `BepInEx\config\NeurotraumaModikByStaili.cfg`.
-Ключевые опции: `ShowModMoodles` (иконки в ванильной панели), `HallucinationVisuals` (фантомные эффекты), `HostAuthoritative` (авторитет хоста), `AddToLootPool` (спавн предметов в луте).
+Ключевые опции: `ShowModMoodles` (иконки в ванильной панели), `HallucinationVisuals` (фантомные эффекты), `EnableParasites` (паразиты + миниигра), тогглы остальных симптомов, `HostAuthoritative` (авторитет хоста), `AddToLootPool` (спавн предметов в луте).
+В MP клиенты **следуют маске симптомов хоста** (локальные галочки симптомов в F9 только для просмотра).
 На строке мода во вкладке **Mods** (при QoL.Unknown) есть кнопки **GIT** (страница релизов на GitHub) и **Nexus** (страница мода на Nexus).
 
 ## Совместимость
@@ -175,12 +183,16 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | `kidneyfailure` | Kidney failure | advanced kidney damage | surgery: kidney transplant |
 | `kidney_warning` | Kidney warning | `kidneyfailure` ≥ 40 | reduce radiation/sepsis/dehydration |
 | `kidney_deadlow` | Kidney failure — critical | `kidneyfailure` ≥ 80 | urgent: bonesaw → kidney transplant |
+| `liverdamage` | Liver damage | alcohol, overdose, sepsis, radiation, kidney toxins, anti-parasite | stop alcohol; treat cause |
+| `liverfailure` / `pechen_dead` | Liver failure | `liverdamage` ≥ 70 | surgery: liver transplant + anti-parasite prophylaxis; no alcohol |
+| `pechen_warning` | Liver warning | `liverdamage` 10–70 | stop drinking; sepsis / overdose / radiation |
 | `chronicpain` | Chronic pain | long-standing injuries | morphine (low dose, mind dependency) |
 | `psychosis` | Psychosis | prolonged hallucinations (>40) | time, sleep, alcohol |
 | `hallucinations` | Hallucinations | radiation, trauma, low mood | time, sleep, alcohol |
 | `porez1` | Cut (grade 1) | scalpel incision; chance from cuts/bites | vanilla thread (`medicalsuture`) or self-heal |
 | `porez3` | Cut (grade 3, wide) | widened with a retractor | suture after operating |
 | `porez4_foreign` / `porez5_foreign` | Cut with foreign body | embedded foreign object (higher chance on bites) | extract with scissors, then suture |
+| `parazite` | Parasites | ~6 min untreated `porez4/5_foreign` on a limb (random 1–5) | pull with bare hands or tweezers (minigame); `nt_antiparasite` does **not** remove burrowed ones |
 | `fresh_suture` | Fresh suture | after applying thread (vanilla) | the spot is protected from re-injury, heals on its own (100 → 0, ~2 min) |
 
 ## Features
@@ -189,10 +201,11 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 - **Mod icons in the vanilla status bar** — active complications appear at the bottom next to vanilla ones, sized to match (toggleable).
 - **Custom surgery** on tools (scalpel / bonesaw / retractor / scissors): drainage, dead-tissue removal, amputation, single-organ transplant (heart / lungs / kidneys). Each transplant consumes one vanilla `internalorgans` item (condition ≥40%). **Operations are not one-click**: incise with the scalpel (porez1) → widen with the retractor (porez3) → then internal procedures; foreign bodies are pulled with scissors; closing uses vanilla thread (`medicalsuture`). The wrong tool doesn't advance the operation — it just hurts a little. Anesthesia comes from the O2 condenser with a loaded serum charge.
 - **Tool wear** — surgical tools lose condition only when an operation is performed (not on opening the menu); consumables wear on use.
-- **Multiplayer**: host-authoritative, state sync (including per-limb wounds and blood type), treating allies through the wound view, operations targeting a specific limb.
+- **Parasites**: burrow into an untreated foreign-body wound on that limb (~6 min). Moodle `parazite` stays at 100% while any remain. Extract via minigame (wound-view special action / vanilla tweezers); in MP peers can see each other’s hands and pull together. Anti-parasitic only grants **prophylaxis** (~6 min, `antiparasite_guard`) against new burrows. Toggle with **Parasite symptoms** (`EnableParasites`).
+- **Multiplayer**: host-authoritative, state sync (including per-limb wounds/parasites and blood type), host symptom mask (`FEATURES`), treating allies through the wound view, limb-targeted operations, shared parasite-extract minigame.
 - **Blood type (ABO+Rh)**: rolled randomly at spawn; shown on the symptoms panel (“You have blood type _”) and on vanilla yellow blood-bag tooltips. Persists across layers and in `save.sv` (Continue). **Incompatible yellow-blood transfusion** → ~3 min elevated BP (~160) and heart rate 120.
 - **Crafting**: tools and consumables under Medicine; typed blood packs need a `bloodbag` + 20 mL `alienblood` (they do not change your innate type — they are for labeled transfusion).
-- **Save persistence**: mod status is written into a `neurotrauma` block inside `save.sv`, including blood type.
+- **Save persistence**: mod status is written into a `neurotrauma` block inside `save.sv`, including blood type, per-limb parasite counts, and foreign-wound age.
 - **Herobrine's Prosthetics support** (optional): when the prosthetics mod is installed, limbs with a `ProstheticLimb` component do not show necrosis/tetanus/frostbite/chronicpain icons, are excluded from the necrosis amputation picker, and are skipped by our frostbite skin-damage write. Body-wide afflictions (psychosis, heart, kidneys, etc.) still apply to the whole patient.
 
 ## Items
@@ -203,7 +216,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | `nt_bonesaw` | Bone saw | amputation, transplant (requires `internalorgans` ≥40%) |
 | `nt_retractor` | Retractor | widens the wound (porez3), pleural drainage, internal procedures |
 | `nt_scissors` | Scissors | extract foreign bodies, eject serum ampoule from the condenser |
-| `nt_antiparasite` | Anti-parasitic | wipes parasites/bacteria in the blood |
+| `nt_antiparasite` | Anti-parasitic | prophylaxis against new parasites (~6 min); mild liver/sepsis help — does **not** extract burrowed parasites |
 | `nt_serum_sleep` | Anesthetic serum | loads into the condenser (like a battery) for anesthesia |
 | `nt_o2_condenser` | O2 condenser | empty — oxygen mask (O2 + hyperventilation); with serum — puts the patient under for surgery |
 | `nt_bloodtype_op` … `nt_bloodtype_abm` | Blood pack (O+/O−/A+/…/AB−) | typed yellow blood for transfusion; craft: `bloodbag` + 20 mL alien blood |
@@ -222,7 +235,8 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 
 - **Target**: explicit `[player]` (MP partial name or `@a`) → open wound view on an ally → local player. Names with spaces work as-is: `nt_add frostbite 20 name name #lhand`.
 - **Cheats**: in multiplayer all `nt_*` commands require **`sv_cheats`** enabled in lobby rules (same as `give` / `godmode`). The host is blocked too when it is off.
-- **Limb selection** via a `#` token: `#sel` (highlighted in UNI-HEALTH), `#<index>`, aliases `#head #chest #lower #lhand #rhand #lfoot #rfoot #lthigh #rthigh ...`, or a name fragment. Applies to limb-scoped afflictions (`necrosis`, `tetanus`, `frostbite`). Without `#`, a limb is picked automatically (necrosis never uses the head). The necrosis icon **does not appear on the head**.
+- **Limb selection** via a `#` token: `#sel` (highlighted in UNI-HEALTH), `#<index>`, aliases `#head #chest #lower #lhand #rhand #lfoot #rfoot #lthigh #rthigh ...`, or a name fragment. Applies to limb-scoped afflictions (`necrosis`, `tetanus`, `frostbite`, `parazite`). Without `#`, a limb is picked automatically (necrosis never uses the head). The necrosis icon **does not appear on the head**.
+- **`parazite`**: `nt_set parazite 100 #larm` rolls a random 1–5 on that limb; `nt_set parazite 3 #larm` sets exactly 3. Moodle stays at 100% while any remain.
 - The command line offers **autocompletion** for both `id` and `#limb` (start typing `#` to see the limb list).
 
 ## Requirements
@@ -248,13 +262,14 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
    (`NeurotraumaModikByStaili.dll` and the `NeurotraumaModik\Content` folder with icons/sounds)
 3. Launch the game. `BepInEx\LogOutput.log` should contain:
    ```
-   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.0.0 loaded. ...
+   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.1.0 loaded. ...
    ```
 
 ## Settings
 
 `Settings → Mods` (with QoL.Unknown) or the **F9** hotkey. File: `BepInEx\config\NeurotraumaModikByStaili.cfg`.
-Key options: `ShowModMoodles` (icons in the vanilla bar), `HallucinationVisuals` (phantom effects), `HostAuthoritative` (host authority), `AddToLootPool` (item loot spawning).
+Key options: `ShowModMoodles` (icons in the vanilla bar), `HallucinationVisuals` (phantom effects), `EnableParasites` (parasites + extract minigame), other symptom toggles, `HostAuthoritative` (host authority), `AddToLootPool` (item loot spawning).
+In MP, clients **follow the host symptom mask** (F9 symptom checkboxes are view-only for clients).
 The mod row on the **Mods** tab (with QoL.Unknown) has **GIT** (GitHub releases page) and **Nexus** (mod page on Nexus) buttons.
 
 ## Compatibility
