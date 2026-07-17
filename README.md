@@ -32,7 +32,7 @@
 | `frostbite_amputation` | Обморожение — предампутация | конечность промёрзла до 100% | срочно: пила (ампутация) — иначе растёт некроз |
 | `necrosis` | Некроз | тяжёлый столбняк/обморожение/сепсис/радиация, 100% обморожение | скальпель (дебридмент, < 70%) или пила (ампутация, ≥ 70%); при успехе инфекция на этой конечности сразу → 0 |
 | `tetanus` | Столбняк | укусы, шип-ловушки, капканы и другие острые раны (не от инфекции) | время + обработка; до некроза (≥75%) |
-| `lihoradka` | Лихорадка | холод, болезнь, сепсис (~15 мин до 100%) | антибиотики / боевой инъектор / helluce; слабость и озноб, пока не спадёт |
+| `fever` | Лихорадка | холод, болезнь, сепсис (~15 мин до 100%) | антибиотики / боевой инъектор / helluce; слабость и озноб, пока не спадёт |
 | `pneumothorax` | Пневмоторакс | травма груди, взрывы | плевральный дренаж (chestdrain / ранорасширитель) |
 | `lungdamage` | Повреждение лёгких | гемоторакс, травмы | кислородный конденсатор, покой (O2 > 94%) |
 | `lungdamage_severe` | Повреждение лёгких — критично | `lungdamage` ≥ 70 | срочно кислородный конденсатор; снизить основное повреждение |
@@ -185,7 +185,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | `frostbite_amputation` | Frostbite — pre-amputation | limb frozen to 100% | urgent: bonesaw (amputation) — otherwise necrosis grows |
 | `necrosis` | Necrosis | severe tetanus/frostbite/sepsis/radiation, 100% frostbite | scalpel (debridement, < 70%) or bonesaw (amputation, ≥ 70%); on success, that limb's infection drops to 0 immediately |
 | `tetanus` | Tetanus | bites, spike traps, bear traps and other sharp wounds (not from infection) | time + wound care; treat before necrosis (75%+) |
-| `lihoradka` | Fever | cold, sickness, sepsis (~15 min to 100%) | antibiotics / combat injector / helluce; weakness and chills until cleared |
+| `fever` | Fever | cold, sickness, sepsis (~15 min to 100%) | antibiotics / combat injector / helluce; weakness and chills until cleared |
 | `pneumothorax` | Pneumothorax | chest trauma, explosions | chest drain (chestdrain / retractor) |
 | `lungdamage` | Lung damage | hemothorax, trauma | O2 condenser, rest (O2 > 94%) |
 | `lungdamage_severe` | Lung damage — critical | `lungdamage` ≥ 70 | O2 condenser urgently; reduce base damage |
