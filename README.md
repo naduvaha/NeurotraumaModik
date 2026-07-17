@@ -114,10 +114,10 @@
 | | |
 |---|---|
 | **Обязательно** | [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases) |
-| **Обязательно** | [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341) — общая библиотека модов (регистрация предметов/контента) |
+| **Обязательно** | [CUCoreLib](https://nexusmods.com/scavprototype/mods/341) — общая библиотека модов (регистрация предметов/контента) |
 | **Опционально** | [KrokoshaCasualtiesMP (KrokMP)](https://cucorelib.web.app/) — синхронизация аффликций в мультиплеере (без него мод работает в одиночной игре) |
 | **Опционально** | [QoL.Unknown](https://github.com/jimmyking9999999/QoL-Unknown/releases) — вкладка **«Нейротравма»** в настройках |
-| **Опционально** | [MultyModik](https://github.com/naduvaha/MultyModik/releases) — источник тиков настроения/обнимашек |
+| **Опционально** | [MultyModik](https://www.nexusmods.com/scavprototype/mods/435) — источник тиков настроения/обнимашек |
 | **Опционально** | **Herobrine's Prosthetics** (`prosthetics.dll`, GUID `com.HerobrinesProsthetics`) — протезы конечностей |
 
 > Для одиночной игры достаточно BepInEx + CUCoreLib. Для MP с синхронизацией Neurotrauma нужен KrokMP; у всех с этим модом — одна версия плагина (+ CUCoreLib, и KrokMP если играете вместе). Игроки без Neurotrauma могут заходить в лобби.
@@ -270,7 +270,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | **Required** | [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341) — shared modding library (item/content registration) |
 | **Optional** | [KrokoshaCasualtiesMP (KrokMP)](https://cucorelib.web.app/) — multiplayer affliction sync (without it the mod runs in single-player) |
 | **Optional** | [QoL.Unknown](https://github.com/jimmyking9999999/QoL-Unknown/releases) — **Neurotrauma** settings tab |
-| **Optional** | [MultyModik](https://github.com/naduvaha/MultyModik/releases) — hug/mood tick source |
+| **Optional** | [MultyModik](https://nexusmods.com/scavprototype/mods/435) — hug/mood tick source |
 | **Optional** | **Herobrine's Prosthetics** (`prosthetics.dll`, GUID `com.HerobrinesProsthetics`) — limb prosthetics |
 
 > Single-player only needs BepInEx + CUCoreLib. For MP sync, install KrokMP; everyone with Neurotrauma should use the same plugin version (+ CUCoreLib, and KrokMP when playing together). Players without this mod may still join.
