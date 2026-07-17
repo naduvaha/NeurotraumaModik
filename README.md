@@ -66,7 +66,7 @@
 - **Паразиты**: заселяются в необработанную рану с инородным телом (~6 мин). После извлечения — **10 минут**, чтобы убрать инородность ножницами, иначе паразиты вернутся. Мудл `parazite` на 100%, пока есть хотя бы один. Миниигра (окно ран / пинцет); в MP можно тянуть вместе. Антипаразитарное — только **профилактика** (~6 мин).
 - **Мультиплеер**: авторитет на хосте; болезни привязаны к **Steam ID** (не «переезжают» на другого при перезаходе); синхронизация ран/паразитов/группы крови и per-limb трекеров; маска симптомов хоста; совместная хирургия и миниигра паразитов. Игроки **без** Neurotrauma могут быть в лобби — у них нет симптомов/предметов мода; у остальных мод продолжает работать.
 - **Группа крови (ABO+Rh)**: случайная при спавне в забеге; показывается в панели симптомов («У вас _ группа крови») и в описании ванильного пакета жёлтой крови. Сохраняется при переходе слоёв и в `save.sv` (Continue). **Несовместимое вливание** жёлтой крови → ~3 мин повышенное давление (~160) и пульс 120.
-- **Крафт / spawn `nt_*`**: инструменты и расходники в вкладке Medicine (через CUCore `RecipeRegistry`); типированные пакеты крови — `bloodbag` + 20 мл `alienblood`. Предметы `nt_*` создаются через собственный `Utils.Create`-guard (совместимость с CUCoreLib при конфликте с RshLib) — один объект на один spawn/craft.
+- **Крафт / spawn `nt_*`**: инструменты и расходники в вкладке Medicine (через CUCore `RecipeRegistry`); типированные пакеты крови — `bloodbag` + 20 мл `alienblood`. Создание предметов — путь CUCore (`Utils.Create` → `CustomInstantiate`).
 - **Сохранение аффликций**: статус мода пишется в блок `neurotrauma` внутри `save.sv` вместе с группой крови, счётчиками паразитов по конечностям и возрастом инородных ран.
 - **Совместимость с Herobrine's Prosthetics** (опционально): если у игрока установлен мод протезов, на конечности с `ProstheticLimb` не показываются necrosis/tetanus/frostbite/chronicpain, не предлагается ампутация через necrosis-picker, мод не бьёт `skinHealth` протеза обморожением. Body-wide аффликции (психоз, сердце, почки и т.д.) по-прежнему действуют на всё тело.
 
@@ -138,7 +138,7 @@
 
 - Требует версию игры / KrokMP / CUCoreLib, под которые собрана сборка.
 - Возможны конфликты с модами, патчащими окно ран (`WoundView`), панель статусов (`MoodleManager`) или систему предметов.
-- **RshLib**: его патч `Utils.Create` ломает CUCore-предметы (`nt_*`); Neurotrauma снимает этот prefix и сам создаёт `nt_*` / зарегистрированные CUCore-items.
+- **RshLib**: его патч `Utils.Create` ломает CUCore-предметы (`nt_*`).
 - **Herobrine's Prosthetics**: поддерживается опционально (runtime-детект `ProstheticLimb`). Протез не получает per-limb инфекцию/некроз/обморожение от нашего мода и не попадает под `nt_bonesaw` через necrosis-picker.
 
 ## Содержимое релиза
@@ -207,7 +207,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 - **Parasites**: burrow into untreated foreign wounds (~6 min). After extraction you have **10 minutes** to remove the foreign body with scissors or they return. Minigame (wound view / tweezers); MP co-op pull. Anti-parasitic is prophylaxis only.
 - **Multiplayer**: host-authoritative; afflictions bound to **Steam ID**; state sync including per-limb trackers; host FEATURES mask; shared surgery / parasite minigame. Players **without** Neurotrauma may join — they lack mod symptoms/items; everyone else keeps the mod.
 - **Blood type (ABO+Rh)**: rolled randomly at spawn; shown on the symptoms panel (“You have blood type _”) and on vanilla yellow blood-bag tooltips. Persists across layers and in `save.sv` (Continue). **Incompatible yellow-blood transfusion** → ~3 min elevated BP (~160) and heart rate 120.
-- **Crafting / `nt_*` spawn**: tools and consumables under Medicine (CUCore `RecipeRegistry`); typed blood packs need a `bloodbag` + 20 mL `alienblood`. `nt_*` items go through our `Utils.Create` guard (CUCoreLib-compatible when RshLib conflicts) — one object per spawn/craft.
+- **Crafting / `nt_*` spawn**: tools and consumables under Medicine (CUCore `RecipeRegistry`); typed blood packs need a `bloodbag` + 20 mL `alienblood`. Spawning uses the CUCore path (`Utils.Create` → `CustomInstantiate`).
 - **Save persistence**: mod status is written into a `neurotrauma` block inside `save.sv`, including blood type, per-limb parasite counts, and foreign-wound age.
 - **Herobrine's Prosthetics support** (optional): when the prosthetics mod is installed, limbs with a `ProstheticLimb` component do not show necrosis/tetanus/frostbite/chronicpain icons, are excluded from the necrosis amputation picker, and are skipped by our frostbite skin-damage write. Body-wide afflictions (psychosis, heart, kidneys, etc.) still apply to the whole patient.
 
@@ -279,7 +279,7 @@ The mod row on the **Mods** tab (with QoL.Unknown) has **GIT** (GitHub releases 
 
 - Tied to the game / KrokMP / CUCoreLib version this build targets. After a major game update the plugin needs a rebuild.
 - May conflict with mods that patch the wound view (`WoundView`), the status bar (`MoodleManager`) or the item system.
-- **RshLib**: its `Utils.Create` patch breaks CUCore items (`nt_*`); Neurotrauma strips that prefix and creates `nt_*` / registered CUCore items itself.
+- **RshLib**: its `Utils.Create` patch breaks CUCore items (`nt_*`).
 - **Herobrine's Prosthetics**: optional integration (runtime `ProstheticLimb` detection). Prosthetic limbs are exempt from our per-limb infection/necrosis/frostbite effects and from necrosis-picker amputation via `nt_bonesaw`.
 
 ## Release contents
