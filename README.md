@@ -2,7 +2,7 @@
 
 [Русский](#русский) | [English](#english)
 
-**Version / Версия:** `2.2.0`  
+**Version / Версия:** `2.2.2`  
 **Plugin / Плагин:** `NeurotraumaModikByStaili.dll`  
 **Nexus / Нексус:** [nexusmods.com/scavprototype/mods/440](https://www.nexusmods.com/scavprototype/mods/440)  
 **Hard dependency / Жёсткая зависимость:** [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341)  
@@ -33,6 +33,7 @@
 | `necrosis` | Некроз | тяжёлый столбняк/обморожение/сепсис/радиация, 100% обморожение | скальпель (дебридмент, < 70%) или пила (ампутация, ≥ 70%); при успехе инфекция на этой конечности сразу → 0 |
 | `tetanus` | Столбняк | укусы, шип-ловушки, капканы и другие острые раны (не от инфекции) | время + обработка; до некроза (≥75%) |
 | `fever` | Лихорадка | холод, болезнь, сепсис (~15 мин до 100%) | антибиотики / боевой инъектор / helluce; слабость и озноб, пока не спадёт |
+| `wrongblood` | Реакция на переливание | несовместимая жёлтая кровь (~3 мин) | подождать; поддержка; не лить ту же группу снова |
 | `pneumothorax` | Пневмоторакс | травма груди, взрывы | плевральный дренаж (chestdrain / ранорасширитель) |
 | `lungdamage` | Повреждение лёгких | гемоторакс, травмы | кислородный конденсатор, покой (O2 > 94%) |
 | `lungdamage_severe` | Повреждение лёгких — критично | `lungdamage` ≥ 70 | срочно кислородный конденсатор; снизить основное повреждение |
@@ -57,7 +58,7 @@
 | `porez1` | Порез (степень 1) | разрез скальпелем; шанс от порезов/укусов | ванильные нити (`medicalsuture`) или само |
 | `porez3` | Порез (степень 3, широкий) | расширение раны ранорасширителем | зашить после операции |
 | `porez4_foreign` / `porez5_foreign` | Порез с инородным телом | попадание инородного тела (выше шанс при укусах) | извлечь ножницами, затем зашить |
-| `parazite` | Паразиты | ~6 мин необработанного `porez4/5_foreign` (1–5 шт.); после извлечения — **10 мин** на ножницы, иначе снова заселятся | извлечь руками/пинцетом; затем ножницами убрать инородность; `nt_antiparasite` только профилактика |
+| `parazite` | Паразиты | ~8 мин необработанного `porez4/5_foreign` (1–5 шт.); после извлечения — **10 мин** на ножницы, иначе снова заселятся | извлечь руками/пинцетом; затем ножницами убрать инородность; `nt_antiparasite` только профилактика |
 | `fresh_suture` | Свежий шов | после наложения нитей (ваниль) | место защищено от повреждений, заживает само (100 → 0, ~2 мин) |
 
 > Скрытые скаляры (не мудлы): `liver_graft` / `liver_sober`, `healthchip` / `chip_fuse`, `antiparasite_guard` — служебные таймеры/флаги.
@@ -69,9 +70,9 @@
 - **Иконки на силуэте UNI-HEALTH** привязаны к конечности (не ездят за курсором): некроз — на поражённой руке/ноге; сердце/лёгкие — только на груди; почки/печень — на животе/нижнем торсе. Печень показывает стадии `pechen_warning` → `pechen_warning2` → `pechen_dead`.
 - **Своя хирургия** на предметы (скальпель / пила / ранорасширитель / ножницы): дренаж, удаление мёртвой ткани, ампутация, пересадка органа (сердце / лёгкие / почки / печень). Для пересадки нужен ванильный предмет `internalorgans` (качество ≥40%) — один предмет на одну операцию. После пересадки печени — окно риска инфекции (`liver_graft`): антипаразитарное ускоряет приживление; алкоголь бьёт по новому органу сильнее. **Операции не «в один клик»**: сначала разрез скальпелем (porez1) → расширение ранорасширителем (porez3) → и только затем внутренние процедуры; инородные тела извлекаются ножницами; закрытие — ванильными нитями (`medicalsuture`). Неверный инструмент не продвигает операцию, а лишь слегка вредит. Анестезия — через кислородный конденсатор с заряженной сывороткой. Дебридмент/ампутация некроза **сразу** обнуляет ванильную инфекцию на оперированной конечности.
 - **Износ инструментов** — хирургические инструменты тратят состояние только при выполнении операции (не при открытии меню); расходники — при использовании. `nt_antiparasite` — **3 дозы** на флакон.
-- **Паразиты**: заселяются в необработанную рану с инородным телом (~6 мин). После извлечения — **10 минут**, чтобы убрать инородность ножницами, иначе паразиты вернутся. Мудл `parazite` на 100%, пока есть хотя бы один. Миниигра (окно ран / пинцет); в MP можно тянуть вместе. Антипаразитарное — только **профилактика** (~6 мин).
+- **Паразиты**: заселяются в необработанный `porez4/5` (~8 мин). После извлечения — **10 минут**, чтобы убрать инородность ножницами, иначе паразиты вернутся. Пока сидят — сепсис начинает проявляться с **10%**. Мудл `parazite` на 100%, пока есть хотя бы один. Миниигра (окно ран / пинцет); в MP можно тянуть вместе. Антипаразитарное — только **профилактика** (~6 мин).
 - **Мультиплеер**: авторитет на хосте; болезни привязаны к **Steam ID** (не «переезжают» на другого при перезаходе); синхронизация ран/паразитов/группы крови и per-limb трекеров; маска симптомов хоста; совместная хирургия и миниигра паразитов. Без KrokMP мод работает в **одиночке**. Игроки **без** Neurotrauma могут быть в лобби — у них нет симптомов/предметов мода; у остальных мод продолжает работать.
-- **Группа крови (ABO+Rh)**: случайная при спавне в забеге; показывается в панели симптомов («У вас _ группа крови») и в описании ванильного пакета жёлтой крови. Сохраняется при переходе слоёв и в `save.sv` (Continue). **Несовместимое вливание** жёлтой крови → ~3 мин повышенное давление (~160) и пульс 120.
+- **Группа крови (ABO+Rh)**: случайная при спавне в забеге; показывается в панели симптомов («У вас _ группа крови») и в описании ванильного пакета жёлтой крови. Сохраняется при переходе слоёв и в `save.sv` (Continue). **Несовместимое вливание** жёлтой крови → ~3 мин мудл `wrongblood`: к текущим пульсу/давлению **прибавляется** бонус (не фиксация на 120/160); растут лихорадка, нагрузка на почки/печень, тошнота.
 - **Крафт / spawn `nt_*`**: инструменты и расходники во вкладке Medicine (через CUCore `RecipeRegistry`); типированные пакеты крови — `bloodbag` + 20 мл `alienblood`. Создание предметов — путь CUCore (`Utils.Create` → `CustomInstantiate`).
 - **Сохранение аффликций**: статус мода пишется в блок `neurotrauma` внутри `save.sv` вместе с группой крови, счётчиками паразитов по конечностям и возрастом инородных ран.
 - **Совместимость с Herobrine's Prosthetics** (опционально): если у игрока установлен мод протезов, на конечности с `ProstheticLimb` не показываются necrosis/tetanus/frostbite/chronicpain, не предлагается ампутация через necrosis-picker, мод не бьёт `skinHealth` протеза обморожением. Body-wide аффликции (психоз, сердце, почки и т.д.) по-прежнему действуют на всё тело.
@@ -134,7 +135,7 @@
    - `NeurotraumaModik\Content\Sound\` (звуки; **без** `Sound\Voice`)
 3. Запустите игру. В `BepInEx\LogOutput.log` появится строка:
    ```
-   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.0 loaded. ... KrokMP: True/False ...
+   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.2 loaded. ... KrokMP: True/False ...
    ```
 
 ## Настройки
@@ -186,6 +187,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | `necrosis` | Necrosis | severe tetanus/frostbite/sepsis/radiation, 100% frostbite | scalpel (debridement, < 70%) or bonesaw (amputation, ≥ 70%); on success, that limb's infection drops to 0 immediately |
 | `tetanus` | Tetanus | bites, spike traps, bear traps and other sharp wounds (not from infection) | time + wound care; treat before necrosis (75%+) |
 | `fever` | Fever | cold, sickness, sepsis (~15 min to 100%) | antibiotics / combat injector / helluce; weakness and chills until cleared |
+| `wrongblood` | Transfusion reaction | incompatible yellow blood (~3 min) | wait it out; supportive care; do not re-transfuse mismatch |
 | `pneumothorax` | Pneumothorax | chest trauma, explosions | chest drain (chestdrain / retractor) |
 | `lungdamage` | Lung damage | hemothorax, trauma | O2 condenser, rest (O2 > 94%) |
 | `lungdamage_severe` | Lung damage — critical | `lungdamage` ≥ 70 | O2 condenser urgently; reduce base damage |
@@ -210,7 +212,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 | `porez1` | Cut (grade 1) | scalpel incision; chance from cuts/bites | vanilla thread (`medicalsuture`) or self-heal |
 | `porez3` | Cut (grade 3, wide) | widened with a retractor | suture after operating |
 | `porez4_foreign` / `porez5_foreign` | Cut with foreign body | embedded foreign object (higher chance on bites) | extract with scissors, then suture |
-| `parazite` | Parasites | ~6 min untreated foreign wound (1–5); after pull — **10 min** to scissors-extract or they re-burrow | pull with hands/tweezers; then scissors; `nt_antiparasite` prophylaxis only |
+| `parazite` | Parasites | ~8 min untreated `porez4/5_foreign` (1–5); after pull — **10 min** to scissors-extract or they re-burrow | pull with hands/tweezers; then scissors; `nt_antiparasite` prophylaxis only |
 | `fresh_suture` | Fresh suture | after applying thread (vanilla) | the spot is protected from re-injury, heals on its own (100 → 0, ~2 min) |
 
 > Hidden scalars (not moodles): `liver_graft` / `liver_sober`, `healthchip` / `chip_fuse`, `antiparasite_guard` — timers/flags.
@@ -222,9 +224,9 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
 - **UNI-HEALTH silhouette icons** are limb-anchored (they do not follow the cursor): necrosis on the affected arm/leg; heart/lungs on the chest only; kidneys/liver on the abdomen / lower torso. Liver shows stages `pechen_warning` → `pechen_warning2` → `pechen_dead`.
 - **Custom surgery** on tools (scalpel / bonesaw / retractor / scissors): drainage, dead-tissue removal, amputation, organ transplant (heart / lungs / kidneys / liver). Each transplant consumes one vanilla `internalorgans` item (condition ≥40%). After a liver transplant — infection-risk window (`liver_graft`): anti-parasite speeds graft settling; alcohol hits the new organ harder. **Operations are not one-click**: incise with the scalpel (porez1) → widen with the retractor (porez3) → then internal procedures; foreign bodies are pulled with scissors; closing uses vanilla thread (`medicalsuture`). The wrong tool doesn't advance the operation — it just hurts a little. Anesthesia comes from the O2 condenser with a loaded serum charge. Necrosis debridement/amputation **immediately** clears vanilla infection on the operated limb.
 - **Tool wear** — surgical tools lose condition only when an operation is performed (not on opening the menu); consumables wear on use. `nt_antiparasite` is a **3-dose** vial.
-- **Parasites**: burrow into untreated foreign wounds (~6 min). After extraction you have **10 minutes** to remove the foreign body with scissors or they return. Minigame (wound view / tweezers); MP co-op pull. Anti-parasitic is prophylaxis only.
+- **Parasites**: burrow into untreated `porez4/5` (~8 min). After extraction you have **10 minutes** to remove the foreign body with scissors or they return. While embedded, sepsis starts showing from **10%**. Minigame (wound view / tweezers); MP co-op pull. Anti-parasitic is prophylaxis only.
 - **Multiplayer**: host-authoritative; afflictions bound to **Steam ID**; state sync including per-limb trackers; host FEATURES mask; shared surgery / parasite minigame. Without KrokMP the mod still runs in **single-player**. Players **without** Neurotrauma may join — they lack mod symptoms/items; everyone else keeps the mod.
-- **Blood type (ABO+Rh)**: rolled randomly at spawn; shown on the symptoms panel (“You have blood type _”) and on vanilla yellow blood-bag tooltips. Persists across layers and in `save.sv` (Continue). **Incompatible yellow-blood transfusion** → ~3 min elevated BP (~160) and heart rate 120.
+- **Blood type (ABO+Rh)**: rolled randomly at spawn; shown on the symptoms panel (“You have blood type _”) and on vanilla yellow blood-bag tooltips. Persists across layers and in `save.sv` (Continue). **Incompatible yellow-blood transfusion** → ~3 min `wrongblood` moodle: **adds** to current pulse/BP (does not pin to 120/160); builds fever, kidney/liver stress, sickness.
 - **Crafting / `nt_*` spawn**: tools and consumables under Medicine (CUCore `RecipeRegistry`); typed blood packs need a `bloodbag` + 20 mL `alienblood`. Spawning uses the CUCore path (`Utils.Create` → `CustomInstantiate`).
 - **Save persistence**: mod status is written into a `neurotrauma` block inside `save.sv`, including blood type, per-limb parasite counts, and foreign-wound age.
 - **Herobrine's Prosthetics support** (optional): when the prosthetics mod is installed, limbs with a `ProstheticLimb` component do not show necrosis/tetanus/frostbite/chronicpain icons, are excluded from the necrosis amputation picker, and are skipped by our frostbite skin-damage write. Body-wide afflictions (psychosis, heart, kidneys, etc.) still apply to the whole patient.
@@ -287,7 +289,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
    - `NeurotraumaModik\Content\Sound\` (sounds; **no** `Sound\Voice`)
 3. Launch the game. `BepInEx\LogOutput.log` should contain:
    ```
-   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.0 loaded. ... KrokMP: True/False ...
+   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.2 loaded. ... KrokMP: True/False ...
    ```
 
 ## Settings
