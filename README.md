@@ -2,7 +2,7 @@
 
 [Русский](#русский) | [English](#english)
 
-**Version / Версия:** `2.2.2`  
+**Version / Версия:** `2.2.3`  
 **Plugin / Плагин:** `NeurotraumaModikByStaili.dll`  
 **Nexus / Нексус:** [nexusmods.com/scavprototype/mods/440](https://www.nexusmods.com/scavprototype/mods/440)  
 **Hard dependency / Жёсткая зависимость:** [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341)  
@@ -135,7 +135,7 @@
    - `NeurotraumaModik\Content\Sound\` (звуки; **без** `Sound\Voice`)
 3. Запустите игру. В `BepInEx\LogOutput.log` появится строка:
    ```
-   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.2 loaded. ... KrokMP: True/False ...
+   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.3 loaded. ... KrokMP: True/False ...
    ```
 
 ## Настройки
@@ -289,7 +289,7 @@ Each has an icon, localized description/cure hints and, where relevant, shows in
    - `NeurotraumaModik\Content\Sound\` (sounds; **no** `Sound\Voice`)
 3. Launch the game. `BepInEx\LogOutput.log` should contain:
    ```
-   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.2 loaded. ... KrokMP: True/False ...
+   [Info : NeurotraumaModikByStaili] NeurotraumaModik by Staili v2.2.3 loaded. ... KrokMP: True/False ...
    ```
 
 ## Settings
