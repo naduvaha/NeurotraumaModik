@@ -2,7 +2,7 @@
 
 [Русский](#русский) | [English](#english)
 
-**Version / Версия:** `2.2.3`  
+**Version / Версия:** `2.3.0`  
 **Plugin / Плагин:** `NeurotraumaModikByStaili.dll`  
 **Nexus / Нексус:** [nexusmods.com/scavprototype/mods/440](https://www.nexusmods.com/scavprototype/mods/440)  
 **Hard dependency / Жёсткая зависимость:** [CUCoreLib](https://www.nexusmods.com/scavprototype/mods/341)  
